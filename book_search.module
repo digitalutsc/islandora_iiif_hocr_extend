@@ -11,6 +11,5 @@ use Drupal\Core\Routing\RouteMatchInterface;
  * Implements hook_page_attachments().
  */
 function book_search_page_attachments(array &$attachments) {
-  drupal_log("loading the library here");
   $attachments['#attached']['library'][] = 'book_search/book_search';
 }

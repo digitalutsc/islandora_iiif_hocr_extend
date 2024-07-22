@@ -1,10 +1,3 @@
-//This calls the jquery library for sliding left side menu for desktop only
-
-(function($) {
-   
-})(jQuery);
-
-
 /*jslint browser: true, esversion: 6 */
 /*global Mirador, Drupal, once*/
 /**
@@ -33,6 +26,7 @@
 
         if (urlParams.get('q') !== null) {
 			
+			// Setup a search action 
 			store.dispatch({
 				type: 'mirador/REQUEST_SEARCH',
 				windowId: windowId,
@@ -45,19 +39,26 @@
 					profile: 'http://iiif.io/api/search/0/search',
 				},
 			});
-
-			store.dispatch({
-				type: 'mirador/UPDATE_WINDOW',
-				id: windowId,
-				payload: {
-					sideBarOpen: true,
-					sideBarPanel: 'search'
-				},
+			
+			// Trigger an action to open the sidebar panel
+			var action = Mirador.actions.updateWindow(windowId, {
+				sideBarOpen: true,
+				sideBarPanel: "search"
 			});
 
+			// Dispatch the action
+			store.dispatch(action);
+
+			// Trigger a click action to open 
+			setTimeout(function() {
+				// swtich to search panel
+				jQuery('button.MuiButtonBase-root[aria-label="Search"]').click();
+			}, 100);
+
+			// trigger the search action
 			setTimeout(function() {
 				jQuery('button.MuiButtonBase-root[aria-label="Submit search"]').click();
-			}, 100);
+			}, 300);
 		}
     });
 
@@ -87,7 +88,4 @@
 		    }
 	    }
 	}
-
-	
-  
-  })(Drupal, once);
+})(Drupal, once);
