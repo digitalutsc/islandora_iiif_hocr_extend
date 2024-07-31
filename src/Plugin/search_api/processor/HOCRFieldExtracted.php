@@ -82,7 +82,7 @@ class HOCRFieldExtracted extends HOCRField {
       ],
     ];
     $data['file']['callable'] = function () use ($entity, &$data) {
-      $data['file']['value'] ??= $this->getFileLite($entity);
+      $data['file']['value'] ??= $this->getFile($entity);
       return $data['file']['value'];
     };
     $data['uri']['callable'] = function () use (&$data) {
