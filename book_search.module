@@ -6,10 +6,31 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
-
+use Drupal\views\ViewExecutable;
 /**
  * Implements hook_page_attachments().
  */
 function book_search_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'book_search/book_search';
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function book_search_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
+  if ($view->id() == "advanced_search") {
+    $filters = $view->getHandlers('filter');
+    $paramList = \Drupal::request()->query->all();
+    if (array_key_exists('a', $paramList)) {
+      $filters = $view->getHandlers('filter');
+      foreach (array_keys($filters) as $key => $filter) { 
+        if (strpos($filter, "model") !== false 
+            && isset($filters[$filter]["value"]["value"]) 
+            && $filters[$filter]["value"]["value"] === "Page" ) {
+          unset($filters[$filter]);
+        } 
+      }
+      $view->display_handler->overrideOption('filters', $filters);
+    }
+  }  
 }
