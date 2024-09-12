@@ -1,0 +1,6 @@
+{
+  "name": "islandora_lite/islandora_iiif_hocr_extend",
+  "type": "drupal-module",
+  "description": "Extends Islandora IIIF HOCR module to extract and index text version of hocr xml data.",
+  "keywords": ["Drupal"]
+}
