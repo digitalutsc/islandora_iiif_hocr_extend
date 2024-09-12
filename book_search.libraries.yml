@@ -1,5 +1,0 @@
-book_search:
-  js:
-    js/book_search.js: {}
-  dependencies:
-    - core/jquery

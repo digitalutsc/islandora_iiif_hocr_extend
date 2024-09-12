@@ -10,14 +10,14 @@ use Drupal\views\ViewExecutable;
 /**
  * Implements hook_page_attachments().
  */
-function book_search_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'book_search/book_search';
+function islandora_iiif_hocr_extend_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'islandora_iiif_hocr_extend/islandora_iiif_hocr_extend';
 }
 
 /**
  * Implements hook_views_pre_view().
  */
-function book_search_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
+function islandora_iiif_hocr_extend_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
   if ($view->id() == "advanced_search") {
     $filters = $view->getHandlers('filter');
     $paramList = \Drupal::request()->query->all();

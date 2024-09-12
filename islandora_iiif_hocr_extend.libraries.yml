@@ -1,0 +1,5 @@
+islandora_iiif_hocr_extend:
+  js:
+    js/islandora_iiif_hocr_extend.js: {}
+  dependencies:
+    - core/jquery

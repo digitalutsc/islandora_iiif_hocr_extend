@@ -1,4 +1,4 @@
-# Book Search
+# Islandora IIIF hOCR Extend
 This moudule contains: 
 
 * functionality of passing the search keyword from Advanced search to Mirador Viewer (with automatically trigger the search)

@@ -1,4 +1,4 @@
-name: Book Search
+name: Islandora IIIF hOCR Extend
 description: This moudule assist to pass keyword search from Advanced Search to Mirador searching
 package: Islandora Lite
 type: module

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\book_search\Plugin\search_api\processor;
+namespace Drupal\islandora_iiif_hocr_extend\Plugin\search_api\processor;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AnonymousUserSession;
