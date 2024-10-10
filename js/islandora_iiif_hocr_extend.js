@@ -54,12 +54,12 @@
 			setTimeout(function() {
 				// swtich to search panel
 				jQuery('button.MuiButtonBase-root[aria-label="Search"]').click();
-			}, 200);
+			}, 400);
 
 			// trigger the search action
 			setTimeout(function() {
 				jQuery('button.MuiButtonBase-root[aria-label="Submit search"]').click();
-			}, 400);
+			}, 600);
 		}
     });
 
@@ -94,7 +94,7 @@
 			    });
 		    }
 		    else if (urlParams.get('q') !== null && (urlParams.get('q').length > 0)) {
-	                jQuery(".breadcrumb__link").each(function( index ) {
+	                /*jQuery(".breadcrumb__link").each(function( index ) {
 	                    if (!jQuery(this).attr('href').includes("?q=")) {
 	                        var querykey = urlParams.get('q')
 	                        if (querykey.indexOf('"') >= 0) {
@@ -103,7 +103,7 @@
 	                        var newlink = jQuery(this).attr('href')  + "?q=" + querykey;
 	                        jQuery(this).attr("href", newlink); 
 	                    }
-	                });
+	                });*/
 		    }
 	    }
 	}
