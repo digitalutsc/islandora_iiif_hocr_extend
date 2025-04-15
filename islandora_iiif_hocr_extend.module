@@ -18,7 +18,7 @@ function islandora_iiif_hocr_extend_page_attachments(array &$attachments) {
  * Implements hook_views_pre_view().
  */
 function islandora_iiif_hocr_extend_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
-  if ($view->id() == "advanced_search") {
+  if ($view->id() == "advanced_search" || $view->id() == "crossed_site_advanced_search") {
     $filters = $view->getHandlers('filter');
     $paramList = \Drupal::request()->query->all();
     if (array_key_exists('a', $paramList)) {
