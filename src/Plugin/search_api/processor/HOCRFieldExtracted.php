@@ -107,15 +107,20 @@ class HOCRFieldExtracted extends HOCRField {
         if (!$field->getValues()) {
           // Lazily load content from entity, as the field might already be
           // populated.
-          // strip all tags of xml
-          $cleaned = \strip_tags($info['callable']());
+          $content = $info['callable']();
 
-          // remove white space and new line after strip_tags
-          $cleaned = preg_replace('/\s+/', ' ', $cleaned);
+          // Null check to only process if content is not NULL
+          if($content !== NULL) {
+            // strip all tags of xml
+            $cleaned = \strip_tags($content);
 
-          // remove if any "- ", if there is
-          $cleaned = str_replace('- ', '', $cleaned);
-          $field->addValue($cleaned);
+            // remove white space and new line after strip_tags
+            $cleaned = preg_replace('/\s+/', ' ', $cleaned);
+
+            // remove if any "- ", if there is
+            $cleaned = str_replace('- ', '', $cleaned);
+            $field->addValue($cleaned);
+          }
         }
       }
     }
