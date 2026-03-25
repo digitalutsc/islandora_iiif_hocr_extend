@@ -5,8 +5,8 @@
  * Contains hello_world.module.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\views\ViewExecutable;
+
 /**
  * Implements hook_page_attachments().
  */
@@ -23,14 +23,15 @@ function islandora_iiif_hocr_extend_views_pre_view(ViewExecutable $view, $displa
     $paramList = \Drupal::request()->query->all();
     if (array_key_exists('a', $paramList)) {
       $filters = $view->getHandlers('filter');
-      foreach (array_keys($filters) as $key => $filter) { 
-        if (strpos($filter, "model") !== false 
-            && isset($filters[$filter]["value"]["value"]) 
-            && $filters[$filter]["value"]["value"] === "Page" ) {
+      // phpcs:ignore -- Unused variable $key.
+      foreach (array_keys($filters) as $key => $filter) {
+        if (strpos($filter, "model") !== FALSE
+            && isset($filters[$filter]["value"]["value"])
+            && $filters[$filter]["value"]["value"] === "Page") {
           unset($filters[$filter]);
-        } 
+        }
       }
       $view->display_handler->overrideOption('filters', $filters);
     }
-  }  
+  }
 }
