@@ -3,15 +3,9 @@
 namespace Drupal\islandora_iiif_hocr_extend\Plugin\search_api\processor;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Session\AnonymousUserSession;
-use Drupal\file\FileInterface;
-use Drupal\islandora_hocr\Plugin\search_api\processor\Property\HOCRFieldProperty;
-use Drupal\media\Plugin\media\Source\File;
 use Drupal\node\NodeInterface;
-use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Plugin\PluginFormTrait;
-use Drupal\search_api\Processor\ProcessorPluginBase;
 use Drupal\search_api\SearchApiException;
 use Drupal\islandora_hocr\Plugin\search_api\processor\HOCRField;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -56,7 +50,6 @@ class HOCRFieldExtracted extends HOCRField {
 
   /**
    * {@inheritDoc}
-   *
    */
   public function addFieldValues(ItemInterface $item) {
     try {
@@ -109,15 +102,15 @@ class HOCRFieldExtracted extends HOCRField {
           // populated.
           $content = $info['callable']();
 
-          // Null check to only process if content is not NULL
-          if($content !== NULL) {
-            // strip all tags of xml
+          // Null check to only process if content is not NULL.
+          if ($content !== NULL) {
+            // Strip all tags of xml.
             $cleaned = \strip_tags($content);
 
-            // remove white space and new line after strip_tags
+            // Remove white space and new line after strip_tags.
             $cleaned = preg_replace('/\s+/', ' ', $cleaned);
 
-            // remove if any "- ", if there is
+            // Remove if any "- ", if there is.
             $cleaned = str_replace('- ', '', $cleaned);
             $field->addValue($cleaned);
           }
@@ -125,4 +118,5 @@ class HOCRFieldExtracted extends HOCRField {
       }
     }
   }
+
 }
