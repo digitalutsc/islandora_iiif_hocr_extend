@@ -50,7 +50,9 @@
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 
-		if (urlParams.get('q') !== null) {
+        // Add the logic to prevent the inital search to run in mobile screen
+        const isPhone = window.matchMedia("(max-width: 767px)").matches;
+		if (!isPhone && urlParams.get('q') !== null) {
 		    
 		    // Setup a search action 
 		    store.dispatch({
@@ -78,14 +80,14 @@
 		    // Wait for the Search tab to be rendered, then click it
 		    waitForElement('button.MuiButtonBase-root[aria-label="Search"]')
 		        .then((searchBtn) => {
-		            console.trace("Search button is triggered");
+		            //console.trace("Search button is triggered");
 		            searchBtn.click();
 		            
 		            // Now wait for the Submit Search button to render inside the panel
 		            return waitForElement('button.MuiButtonBase-root[aria-label="Submit search"]');
 		        })
 		        .then((submitBtn) => {
-		            console.trace("Submit Search is sent");
+		            //console.trace("Submit Search is sent");
 		            submitBtn.click();
 		        })
 		        .catch((error) => {
