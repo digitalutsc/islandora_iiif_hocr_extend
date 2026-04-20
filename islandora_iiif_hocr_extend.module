@@ -23,8 +23,7 @@ function islandora_iiif_hocr_extend_views_pre_view(ViewExecutable $view, $displa
     $paramList = \Drupal::request()->query->all();
     if (array_key_exists('a', $paramList)) {
       $filters = $view->getHandlers('filter');
-      // phpcs:ignore -- Unused variable $key.
-      foreach (array_keys($filters) as $key => $filter) {
+      foreach (array_keys($filters) as $filter) {
         if (strpos($filter, "model") !== FALSE
             && isset($filters[$filter]["value"]["value"])
             && $filters[$filter]["value"]["value"] === "Page") {
